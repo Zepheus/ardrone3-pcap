@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacketInspectorForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblProject = new System.Windows.Forms.Label();
-            this.lblClass = new System.Windows.Forms.Label();
             this.lblCommand = new System.Windows.Forms.Label();
+            this.lblClass = new System.Windows.Forms.Label();
+            this.lblProject = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.hxData = new Be.Windows.Forms.HexBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -50,24 +51,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Metadata:";
             // 
-            // groupBox2
+            // lblCommand
             // 
-            this.groupBox2.Controls.Add(this.hxData);
-            this.groupBox2.Location = new System.Drawing.Point(12, 100);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(622, 366);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Data:";
-            // 
-            // lblProject
-            // 
-            this.lblProject.AutoSize = true;
-            this.lblProject.Location = new System.Drawing.Point(6, 30);
-            this.lblProject.Name = "lblProject";
-            this.lblProject.Size = new System.Drawing.Size(43, 13);
-            this.lblProject.TabIndex = 0;
-            this.lblProject.Text = "Project:";
+            this.lblCommand.AutoSize = true;
+            this.lblCommand.Location = new System.Drawing.Point(6, 56);
+            this.lblCommand.Name = "lblCommand";
+            this.lblCommand.Size = new System.Drawing.Size(57, 13);
+            this.lblCommand.TabIndex = 2;
+            this.lblCommand.Text = "Command:";
             // 
             // lblClass
             // 
@@ -78,14 +69,24 @@
             this.lblClass.TabIndex = 1;
             this.lblClass.Text = "Class:";
             // 
-            // lblCommand
+            // lblProject
             // 
-            this.lblCommand.AutoSize = true;
-            this.lblCommand.Location = new System.Drawing.Point(6, 56);
-            this.lblCommand.Name = "lblCommand";
-            this.lblCommand.Size = new System.Drawing.Size(57, 13);
-            this.lblCommand.TabIndex = 2;
-            this.lblCommand.Text = "Command:";
+            this.lblProject.AutoSize = true;
+            this.lblProject.Location = new System.Drawing.Point(6, 30);
+            this.lblProject.Name = "lblProject";
+            this.lblProject.Size = new System.Drawing.Size(43, 13);
+            this.lblProject.TabIndex = 0;
+            this.lblProject.Text = "Project:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.hxData);
+            this.groupBox2.Location = new System.Drawing.Point(12, 100);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(622, 366);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Data:";
             // 
             // hxData
             // 
@@ -104,6 +105,7 @@
             this.ClientSize = new System.Drawing.Size(646, 478);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "PacketInspectorForm";
             this.Text = "PacketInspectorForm";

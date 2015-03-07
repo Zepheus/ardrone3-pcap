@@ -99,13 +99,15 @@ namespace BepopProtocolAnalyzer
             if (lstPackets.SelectedItems.Count > 0)
             {
                 var selectedFrame = (Frame)lstPackets.SelectedItems[0].Tag;
-                if (selectedFrame.Type == FrameType.DATA || selectedFrame.Type == FrameType.DATA_LL)
+                if (selectedFrame.Type == FrameType.DATA
+                    || selectedFrame.Type == FrameType.DATA_LL
+                    || selectedFrame.Type == FrameType.DATA_W_ACK)
                 {
                     var packet = Packet.Parse(selectedFrame.Data);
                     var form = new PacketInspectorForm(packet);
                     form.ShowDialog();
                 }
-                else MessageBox.Show("Cannot show packet window: this is a raw frame without data.");
+               
             }
         }
     }

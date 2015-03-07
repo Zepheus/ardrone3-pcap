@@ -57,7 +57,14 @@ namespace BepopProtocolAnalyzer
             {
                 var i = new ListViewItem(f.Direction.ToString());
                 i.SubItems.Add(f.Type.ToString());
-                i.SubItems.Add(f.Id.ToString());
+
+                if(f.Id == 0)
+                    i.SubItems.Add("PING");
+                else if (f.Id == 1)
+                    i.SubItems.Add("PONG");
+                else
+                    i.SubItems.Add(f.Id.ToString());
+
                 i.SubItems.Add(f.Seq.ToString());
                 i.SubItems.Add(f.Data.Length.ToString());
                 if (f.Type == FrameType.DATA_W_ACK

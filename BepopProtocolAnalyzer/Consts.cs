@@ -92,7 +92,7 @@ namespace BepopProtocolAnalyzer
         ARLIBSVERSIONSSTATE = 18
     }
 
-    public enum ArDrone3PilotingCommand : byte
+    public enum ArDrone3PilotingCommand : ushort
     {
         FLATTRIM = 0,
         TAKEOFF,
@@ -103,17 +103,17 @@ namespace BepopProtocolAnalyzer
         AUTOTAKEOFFMODE,
     }
 
-    public enum ArDrone3AnimationCommand : byte
+    public enum ArDrone3AnimationCommand : ushort
     {
         FLIP = 0,
     }
 
-    public enum ArDrone3CameraCommand : byte
+    public enum ArDrone3CameraCommand : ushort
     {
         ARCOMMANDS_ID_ARDRONE3_CAMERA_CMD_ORIENTATION = 0,
     }
 
-    public enum ArDrone3MediaRecordCommand : byte
+    public enum ArDrone3MediaRecordCommand : ushort
     {
         PICTURE = 0,
         VIDEO,
@@ -121,7 +121,7 @@ namespace BepopProtocolAnalyzer
         VIDEOV2,
     }
 
-    public enum ArDrone3MediaRecordStateCommand : byte
+    public enum ArDrone3MediaRecordStateCommand : ushort
     {
         PICTURESTATECHANGED = 0,
         VIDEOSTATECHANGED,
@@ -129,13 +129,13 @@ namespace BepopProtocolAnalyzer
         VIDEOSTATECHANGEDV2,
     }
 
-    public enum ArDrone3MediaRecordEventCommand : byte
+    public enum ArDrone3MediaRecordEventCommand : ushort
     {
         PICTUREEVENTCHANGED = 0,
         VIDEOEVENTCHANGED,
     }
 
-    public enum ArDrone3PilotingStateCommand : byte
+    public enum ArDrone3PilotingStateCommand : ushort
     {
         FLATTRIMCHANGED = 0,
         FLYINGSTATECHANGED,
@@ -148,13 +148,13 @@ namespace BepopProtocolAnalyzer
         ALTITUDECHANGED,
     }
 
-    public enum ArDrone3NetworkCommand : byte
+    public enum ArDrone3NetworkCommand : ushort
     {
         WIFISCAN = 0,
         WIFIAUTHCHANNEL,
     }
 
-    public enum ArDrone3NetworkStateCommand : byte
+    public enum ArDrone3NetworkStateCommand : ushort
     {
         WIFISCANLISTCHANGED = 0,
         ALLWIFISCANCHANGED,
@@ -162,21 +162,21 @@ namespace BepopProtocolAnalyzer
         ALLWIFIAUTHCHANNELCHANGED,
     }
 
-    public enum ArDrone3PilotingSettingCommand : byte
+    public enum ArDrone3PilotingSettingCommand : ushort
     {
         MAXALTITUDE = 0,
         MAXTILT,
         ABSOLUTCONTROL,
     }
 
-    public enum ArDrone3PilotingSettingStateCommand : byte
+    public enum ArDrone3PilotingSettingStateCommand : ushort
     {
         MAXALTITUDECHANGED = 0,
         MAXTILTCHANGED,
         ABSOLUTCONTROLCHANGED,
     }
 
-    public enum ArDrone3SpeedSettingsCommand : byte
+    public enum ArDrone3SpeedSettingsCommand : ushort
     {
         MAXVERTICALSPEED = 0,
         MAXROTATIONSPEED,
@@ -184,7 +184,7 @@ namespace BepopProtocolAnalyzer
         OUTDOOR,
     }
 
-    public enum ArDrone3SpeedSettingsStateCommand : byte
+    public enum ArDrone3SpeedSettingsStateCommand : ushort
     {
         MAXVERTICALSPEEDCHANGED = 0,
         MAXROTATIONSPEEDCHANGED,
@@ -192,17 +192,17 @@ namespace BepopProtocolAnalyzer
         OUTDOORCHANGED,
     }
 
-    public enum ArDrone3NetworkSettingsCommand : byte
+    public enum ArDrone3NetworkSettingsCommand : ushort
     {
         WIFISELECTION = 0,
     }
 
-    public enum ArDrone3NetworkSettingsStateCommand : byte
+    public enum ArDrone3NetworkSettingsStateCommand : ushort
     {
         WIFISELECTIONCHANGED = 0,
     }
 
-    public enum ArDrone3SettingsStateCommand : byte
+    public enum ArDrone3SettingsStateCommand : ushort
     {
         PRODUCTMOTORVERSIONLISTCHANGED = 0,
         PRODUCTGPSVERSIONCHANGED,
@@ -212,7 +212,7 @@ namespace BepopProtocolAnalyzer
         MOTORERRORLASTERRORCHANGED,
     }
 
-    public enum ArDrone3PictureSettingCommand : byte
+    public enum ArDrone3PictureSettingCommand : ushort
     {
         PICTUREFORMATSELECTION = 0,
         AUTOWHITEBALANCESELECTION,
@@ -222,7 +222,7 @@ namespace BepopProtocolAnalyzer
         VIDEOAUTORECORDSELECTION,
     }
 
-    public enum ArDrone3PictureSettingStateCommand : byte
+    public enum ArDrone3PictureSettingStateCommand : ushort
     {
         PICTUREFORMATCHANGED = 0,
         AUTOWHITEBALANCECHANGED,
@@ -232,24 +232,24 @@ namespace BepopProtocolAnalyzer
         VIDEOAUTORECORDCHANGED,
     }
 
-    public enum ArDrone3MediaStreamingCommand : byte
+    public enum ArDrone3MediaStreamingCommand : ushort
     {
         VIDEOENABLE = 0,
     }
 
-    public enum ArDrone3MediaStreamingStateCommand : byte
+    public enum ArDrone3MediaStreamingStateCommand : ushort
     {
         VIDEOENABLECHANGED = 0,
     }
 
-    public enum ArDrone3GPSSettingCommand : byte
+    public enum ArDrone3GPSSettingCommand : ushort
     {
         SETHOME = 0,
         RESETHOME,
         SENDCONTROLLERGPS,
     }
 
-    public enum ArDrone3GPSSettingStateCommand : byte
+    public enum ArDrone3GPSSettingStateCommand : ushort
     {
         HOMECHANGED = 0,
         RESETHOMECHANGED,
@@ -257,34 +257,34 @@ namespace BepopProtocolAnalyzer
         GPSUPDATESTATECHANGED,
     }
 
-    public enum ArDrone3CameraStateCommand : byte
+    public enum ArDrone3CameraStateCommand : ushort
     {
         ORIENTATION = 0,
     }
 
-    public enum ArDrone3AntiFlickeringCommand : byte
+    public enum ArDrone3AntiFlickeringCommand : ushort
     {
         ELECTRICFREQUENCY = 0,
     }
 
-    public enum ArDrone3DebugVideoCommand : byte
+    public enum ArDrone3DebugVideoCommand : ushort
     {
         ENABLEWOBBLECANCELLATION = 0,
         SYNCANGLESGYROS,
         MANUALWHITEBALANCE,
     }
 
-    public enum ArDrone3DebugBatterySettingsCommand : byte
+    public enum ArDrone3DebugBatterySettingsCommand : ushort
     {
         USEDRONE2BATTERY = 0,
     }
 
-    public enum ArDrone3DebugBatterySettingsStateCommand : byte
+    public enum ArDrone3DebugBatterySettingsStateCommand : ushort
     {
         USEDRONE2BATTERYCHANGED = 0
     }
 
-    public enum ArDrone3DebugGpsStateCommand : byte
+    public enum ArDrone3DebugGpsStateCommand : ushort
     {
         NBSATELLITECHANGED = 0
     }

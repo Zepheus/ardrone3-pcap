@@ -24,9 +24,12 @@ namespace BepopProtocolAnalyzer
 
         private void Init()
         {
+            var cl = Packet.GetPacketClass(packet.Project, packet.Class);
+            var cmd = Packet.GetPacketCommand(packet.Project, packet.Class, packet.Command);
+
             lblProject.Text = string.Format("Project: {0}", packet.Project);
-            lblClass.Text = string.Format("Class: {0}", Packet.GetPacketClass(packet));
-            lblCommand.Text = string.Format("Command: {0}", packet.Command);
+            lblClass.Text = string.Format("Class: {0}", cl);
+            lblCommand.Text = string.Format("Command: {0}", cmd);
 
             var ms = new MemoryStream(packet.Data);
             var prov = new Be.Windows.Forms.DynamicFileByteProvider(ms);

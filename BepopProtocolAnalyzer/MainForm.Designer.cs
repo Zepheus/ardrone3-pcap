@@ -42,6 +42,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -52,7 +54,7 @@
             this.groupBox1.Controls.Add(this.lstPackets);
             this.groupBox1.Location = new System.Drawing.Point(12, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(478, 418);
+            this.groupBox1.Size = new System.Drawing.Size(835, 330);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packet List:";
@@ -70,9 +72,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.hxBox);
-            this.groupBox2.Location = new System.Drawing.Point(496, 45);
+            this.groupBox2.Location = new System.Drawing.Point(13, 381);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 418);
+            this.groupBox2.Size = new System.Drawing.Size(834, 205);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data:";
@@ -80,20 +82,20 @@
             // hxBox
             // 
             this.hxBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.hxBox.Location = new System.Drawing.Point(6, 19);
+            this.hxBox.Location = new System.Drawing.Point(5, 19);
             this.hxBox.Name = "hxBox";
             this.hxBox.ReadOnly = true;
             this.hxBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hxBox.Size = new System.Drawing.Size(497, 393);
+            this.hxBox.Size = new System.Drawing.Size(822, 180);
             this.hxBox.TabIndex = 0;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 466);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1012, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(859, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -111,10 +113,12 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
             this.lstPackets.Location = new System.Drawing.Point(6, 19);
             this.lstPackets.Name = "lstPackets";
-            this.lstPackets.Size = new System.Drawing.Size(463, 383);
+            this.lstPackets.Size = new System.Drawing.Size(823, 305);
             this.lstPackets.TabIndex = 0;
             this.lstPackets.UseCompatibleStateImageBehavior = false;
             this.lstPackets.View = System.Windows.Forms.View.Details;
@@ -139,6 +143,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Seq";
+            this.columnHeader4.Width = 56;
             // 
             // columnHeader5
             // 
@@ -147,13 +152,23 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "Proj";
-            this.columnHeader6.Width = 83;
+            this.columnHeader6.Width = 111;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Class";
+            this.columnHeader7.Width = 147;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Cmd";
+            this.columnHeader8.Width = 170;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 488);
+            this.ClientSize = new System.Drawing.Size(859, 611);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnOpenPcap);
@@ -186,6 +201,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }
 

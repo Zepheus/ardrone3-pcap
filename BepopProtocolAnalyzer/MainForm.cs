@@ -14,12 +14,12 @@ namespace BepopProtocolAnalyzer
     public partial class MainForm : Form
     {
         private PacketReader reader;
-        private List<Frame> frames; 
+        private List<Frame> frames;
 
         public MainForm()
         {
             InitializeComponent();
- 
+
             frames = new List<Frame>();
         }
 
@@ -64,8 +64,17 @@ namespace BepopProtocolAnalyzer
                     || f.Type == FrameType.DATA_LL
                     || f.Type == FrameType.DATA)
                 {
-                    var proj = (PacketType) f.Data[0];
+                    var proj = (PacketType)f.Data[0];
+                    var c = Packet.GetPacketClass(proj, f.Data[1]);
+
+                    ushort command = 0;
+                    command = f.Data[2];
+                    command |= (ushort)(f.Data[3] << 8);
+
+                    var cmd = Packet.GetPacketCommand(proj, f.Data[1], command);
                     i.SubItems.Add(proj.ToString());
+                    i.SubItems.Add(c);
+                    i.SubItems.Add(cmd);
                 }
                 i.Tag = f;
                 lstPackets.Items.Add(i);
@@ -90,13 +99,13 @@ namespace BepopProtocolAnalyzer
 
                 if (hxBox.ByteProvider != null)
                 {
-                    var p = (Be.Windows.Forms.DynamicFileByteProvider) hxBox.ByteProvider;
+                    var p = (Be.Windows.Forms.DynamicFileByteProvider)hxBox.ByteProvider;
                     p.Dispose();
                 }
 
                 var ms = new MemoryStream(selectedFrame.Data);
                 var prov = new Be.Windows.Forms.DynamicFileByteProvider(ms);
-              
+
                 hxBox.ByteProvider = prov;
             }
         }
@@ -114,7 +123,7 @@ namespace BepopProtocolAnalyzer
                     var form = new PacketInspectorForm(packet);
                     form.ShowDialog();
                 }
-               
+
             }
         }
     }

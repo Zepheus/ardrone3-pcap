@@ -60,6 +60,13 @@ namespace BepopProtocolAnalyzer
                 i.SubItems.Add(f.Id.ToString());
                 i.SubItems.Add(f.Seq.ToString());
                 i.SubItems.Add(f.Data.Length.ToString());
+                if (f.Type == FrameType.DATA_W_ACK
+                    || f.Type == FrameType.DATA_LL
+                    || f.Type == FrameType.DATA)
+                {
+                    var proj = (PacketType) f.Data[0];
+                    i.SubItems.Add(proj.ToString());
+                }
                 i.Tag = f;
                 lstPackets.Items.Add(i);
             });

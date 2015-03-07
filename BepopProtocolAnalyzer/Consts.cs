@@ -91,4 +91,201 @@ namespace BepopProtocolAnalyzer
         FLIGHTPLANEVENT = 19,
         ARLIBSVERSIONSSTATE = 18
     }
+
+    public enum ArDrone3PilotingCommand : byte
+    {
+        FLATTRIM = 0,
+        TAKEOFF,
+        PCMD,
+        LANDING,
+        EMERGENCY,
+        NAVIGATEHOME,
+        AUTOTAKEOFFMODE,
+    }
+
+    public enum ArDrone3AnimationCommand : byte
+    {
+        FLIP = 0,
+    }
+
+    public enum ArDrone3CameraCommand : byte
+    {
+        ARCOMMANDS_ID_ARDRONE3_CAMERA_CMD_ORIENTATION = 0,
+    }
+
+    public enum ArDrone3MediaRecordCommand : byte
+    {
+        PICTURE = 0,
+        VIDEO,
+        PICTUREV2,
+        VIDEOV2,
+    }
+
+    public enum ArDrone3MediaRecordStateCommand : byte
+    {
+        PICTURESTATECHANGED = 0,
+        VIDEOSTATECHANGED,
+        PICTURESTATECHANGEDV2,
+        VIDEOSTATECHANGEDV2,
+    }
+
+    public enum ArDrone3MediaRecordEventCommand : byte
+    {
+        PICTUREEVENTCHANGED = 0,
+        VIDEOEVENTCHANGED,
+    }
+
+    public enum ArDrone3PilotingStateCommand : byte
+    {
+        FLATTRIMCHANGED = 0,
+        FLYINGSTATECHANGED,
+        ALERTSTATECHANGED,
+        NAVIGATEHOMESTATECHANGED,
+        POSITIONCHANGED,
+        SPEEDCHANGED,
+        ATTITUDECHANGED,
+        AUTOTAKEOFFMODECHANGED,
+        ALTITUDECHANGED,
+    }
+
+    public enum ArDrone3NetworkCommand : byte
+    {
+        WIFISCAN = 0,
+        WIFIAUTHCHANNEL,
+    }
+
+    public enum ArDrone3NetworkStateCommand : byte
+    {
+        WIFISCANLISTCHANGED = 0,
+        ALLWIFISCANCHANGED,
+        WIFIAUTHCHANNELLISTCHANGED,
+        ALLWIFIAUTHCHANNELCHANGED,
+    }
+
+    public enum ArDrone3PilotingSettingCommand : byte
+    {
+        MAXALTITUDE = 0,
+        MAXTILT,
+        ABSOLUTCONTROL,
+    }
+
+    public enum ArDrone3PilotingSettingStateCommand : byte
+    {
+        MAXALTITUDECHANGED = 0,
+        MAXTILTCHANGED,
+        ABSOLUTCONTROLCHANGED,
+    }
+
+    public enum ArDrone3SpeedSettingsCommand : byte
+    {
+        MAXVERTICALSPEED = 0,
+        MAXROTATIONSPEED,
+        HULLPROTECTION,
+        OUTDOOR,
+    }
+
+    public enum ArDrone3SpeedSettingsStateCommand : byte
+    {
+        MAXVERTICALSPEEDCHANGED = 0,
+        MAXROTATIONSPEEDCHANGED,
+        HULLPROTECTIONCHANGED,
+        OUTDOORCHANGED,
+    }
+
+    public enum ArDrone3NetworkSettingsCommand : byte
+    {
+        WIFISELECTION = 0,
+    }
+
+    public enum ArDrone3NetworkSettingsStateCommand : byte
+    {
+        WIFISELECTIONCHANGED = 0,
+    }
+
+    public enum ArDrone3SettingsStateCommand : byte
+    {
+        PRODUCTMOTORVERSIONLISTCHANGED = 0,
+        PRODUCTGPSVERSIONCHANGED,
+        MOTORERRORSTATECHANGED,
+        MOTORSOFTWAREVERSIONCHANGED,
+        MOTORFLIGHTSSTATUSCHANGED,
+        MOTORERRORLASTERRORCHANGED,
+    }
+
+    public enum ArDrone3PictureSettingCommand : byte
+    {
+        PICTUREFORMATSELECTION = 0,
+        AUTOWHITEBALANCESELECTION,
+        EXPOSITIONSELECTION,
+        SATURATIONSELECTION,
+        TIMELAPSESELECTION,
+        VIDEOAUTORECORDSELECTION,
+    }
+
+    public enum ArDrone3PictureSettingStateCommand : byte
+    {
+        PICTUREFORMATCHANGED = 0,
+        AUTOWHITEBALANCECHANGED,
+        EXPOSITIONCHANGED,
+        SATURATIONCHANGED,
+        TIMELAPSECHANGED,
+        VIDEOAUTORECORDCHANGED,
+    }
+
+    public enum ArDrone3MediaStreamingCommand : byte
+    {
+        VIDEOENABLE = 0,
+    }
+
+    public enum ArDrone3MediaStreamingStateCommand : byte
+    {
+        VIDEOENABLECHANGED = 0,
+    }
+
+    public enum ArDrone3GPSSettingCommand : byte
+    {
+        SETHOME = 0,
+        RESETHOME,
+        SENDCONTROLLERGPS,
+    }
+
+    public enum ArDrone3GPSSettingStateCommand : byte
+    {
+        HOMECHANGED = 0,
+        RESETHOMECHANGED,
+        GPSFIXSTATECHANGED,
+        GPSUPDATESTATECHANGED,
+    }
+
+    public enum ArDrone3CameraStateCommand : byte
+    {
+        ORIENTATION = 0,
+    }
+
+    public enum ArDrone3AntiFlickeringCommand : byte
+    {
+        ELECTRICFREQUENCY = 0,
+    }
+
+    public enum ArDrone3DebugVideoCommand : byte
+    {
+        ENABLEWOBBLECANCELLATION = 0,
+        SYNCANGLESGYROS,
+        MANUALWHITEBALANCE,
+    }
+
+    public enum ArDrone3DebugBatterySettingsCommand : byte
+    {
+        USEDRONE2BATTERY = 0,
+    }
+
+    public enum ArDrone3DebugBatterySettingsStateCommand : byte
+    {
+        USEDRONE2BATTERYCHANGED = 0
+    }
+
+    public enum ArDrone3DebugGpsStateCommand : byte
+    {
+        NBSATELLITECHANGED = 0
+    }
 }

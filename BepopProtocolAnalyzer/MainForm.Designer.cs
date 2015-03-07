@@ -30,17 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnOpenPcap = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.hxBox = new Be.Windows.Forms.HexBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lstPackets = new BepopProtocolAnalyzer.ListViewNF();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnOpenPcap = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.hxBox = new Be.Windows.Forms.HexBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -51,10 +52,56 @@
             this.groupBox1.Controls.Add(this.lstPackets);
             this.groupBox1.Location = new System.Drawing.Point(12, 45);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(416, 418);
+            this.groupBox1.Size = new System.Drawing.Size(478, 418);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packet List:";
+            // 
+            // btnOpenPcap
+            // 
+            this.btnOpenPcap.Location = new System.Drawing.Point(13, 13);
+            this.btnOpenPcap.Name = "btnOpenPcap";
+            this.btnOpenPcap.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenPcap.TabIndex = 1;
+            this.btnOpenPcap.Text = "Open PCAP";
+            this.btnOpenPcap.UseVisualStyleBackColor = true;
+            this.btnOpenPcap.Click += new System.EventHandler(this.btnOpenPcap_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.hxBox);
+            this.groupBox2.Location = new System.Drawing.Point(496, 45);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(509, 418);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Data:";
+            // 
+            // hxBox
+            // 
+            this.hxBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.hxBox.Location = new System.Drawing.Point(6, 19);
+            this.hxBox.Name = "hxBox";
+            this.hxBox.ReadOnly = true;
+            this.hxBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hxBox.Size = new System.Drawing.Size(497, 393);
+            this.hxBox.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 466);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1012, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(118, 17);
+            this.lblStatus.Text = "toolStripStatusLabel1";
             // 
             // lstPackets
             // 
@@ -63,10 +110,11 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.lstPackets.Location = new System.Drawing.Point(6, 19);
             this.lstPackets.Name = "lstPackets";
-            this.lstPackets.Size = new System.Drawing.Size(399, 383);
+            this.lstPackets.Size = new System.Drawing.Size(463, 383);
             this.lstPackets.TabIndex = 0;
             this.lstPackets.UseCompatibleStateImageBehavior = false;
             this.lstPackets.View = System.Windows.Forms.View.Details;
@@ -96,51 +144,10 @@
             // 
             this.columnHeader5.Text = "Len";
             // 
-            // btnOpenPcap
+            // columnHeader6
             // 
-            this.btnOpenPcap.Location = new System.Drawing.Point(13, 13);
-            this.btnOpenPcap.Name = "btnOpenPcap";
-            this.btnOpenPcap.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenPcap.TabIndex = 1;
-            this.btnOpenPcap.Text = "Open PCAP";
-            this.btnOpenPcap.UseVisualStyleBackColor = true;
-            this.btnOpenPcap.Click += new System.EventHandler(this.btnOpenPcap_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.hxBox);
-            this.groupBox2.Location = new System.Drawing.Point(434, 45);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(571, 418);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Data:";
-            // 
-            // hxBox
-            // 
-            this.hxBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.hxBox.Location = new System.Drawing.Point(6, 19);
-            this.hxBox.Name = "hxBox";
-            this.hxBox.ReadOnly = true;
-            this.hxBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hxBox.Size = new System.Drawing.Size(552, 393);
-            this.hxBox.TabIndex = 0;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 466);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1012, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(118, 17);
-            this.lblStatus.Text = "toolStripStatusLabel1";
+            this.columnHeader6.Text = "Proj";
+            this.columnHeader6.Width = 83;
             // 
             // MainForm
             // 
@@ -178,6 +185,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 

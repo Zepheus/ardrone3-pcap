@@ -35,12 +35,14 @@
             this.lblProject = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.hxData = new Be.Windows.Forms.HexBox();
+            this.lblLen = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblLen);
             this.groupBox1.Controls.Add(this.lblCommand);
             this.groupBox1.Controls.Add(this.lblClass);
             this.groupBox1.Controls.Add(this.lblProject);
@@ -98,6 +100,15 @@
             this.hxData.Size = new System.Drawing.Size(607, 340);
             this.hxData.TabIndex = 0;
             // 
+            // lblLen
+            // 
+            this.lblLen.AutoSize = true;
+            this.lblLen.Location = new System.Drawing.Point(327, 30);
+            this.lblLen.Name = "lblLen";
+            this.lblLen.Size = new System.Drawing.Size(43, 13);
+            this.lblLen.TabIndex = 3;
+            this.lblLen.Text = "Length:";
+            // 
             // PacketInspectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,5 +135,6 @@
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.GroupBox groupBox2;
         private Be.Windows.Forms.HexBox hxData;
+        private System.Windows.Forms.Label lblLen;
     }
 }

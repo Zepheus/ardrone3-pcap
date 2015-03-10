@@ -16,6 +16,8 @@ namespace BepopProtocolAnalyzer
         private PacketReader reader;
         private List<Frame> frames;
 
+        private BepopServer s;
+
         public MainForm()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace BepopProtocolAnalyzer
             {
                 lblStatus.Text = "Parsing PCAP...";
                 btnOpenPcap.Enabled = false;
+                chkShowLL.Enabled = false;
                 Task.Factory.StartNew(() =>
                 {
                     reader = new PacketReader(ofd.FileName);
@@ -67,9 +70,9 @@ namespace BepopProtocolAnalyzer
 
                 i.SubItems.Add(f.Seq.ToString());
                 i.SubItems.Add(f.Data.Length.ToString());
-                if (f.Type == FrameType.DATA_W_ACK
+                if (f.Id >= 2 && (f.Type == FrameType.DATA_W_ACK
                     || f.Type == FrameType.DATA_LL
-                    || f.Type == FrameType.DATA)
+                    || f.Type == FrameType.DATA))
                 {
                     var proj = (PacketType)f.Data[0];
                     var c = Packet.GetPacketClass(proj, f.Data[1]);
@@ -95,7 +98,10 @@ namespace BepopProtocolAnalyzer
         void reader_OnFrameReceived(object sender, FrameReceivedEventArgs e)
         {
             frames.Add(e.Frame);
-            AddFrameToList(e.Frame);
+            if (e.Frame.Type != FrameType.DATA_LL || (chkShowLL.Checked))
+            {
+                AddFrameToList(e.Frame);
+            }
         }
 
         private void lstPackets_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,6 +137,17 @@ namespace BepopProtocolAnalyzer
                     form.ShowDialog();
                 }
 
+            }
+        }
+
+        private void btnStartSimulator_Click(object sender, EventArgs e)
+        {
+            if (s == null)
+            {
+                s = new BepopServer(44444);
+                s.OnFrameReceived += reader_OnFrameReceived;
+                s.Start();
+                btnStartSimulator.Enabled = false;
             }
         }
     }

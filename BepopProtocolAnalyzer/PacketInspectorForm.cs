@@ -30,6 +30,7 @@ namespace BepopProtocolAnalyzer
             lblProject.Text = string.Format("Project: {0}", packet.Project);
             lblClass.Text = string.Format("Class: {0}", cl);
             lblCommand.Text = string.Format("Command: {0}", cmd);
+            lblLen.Text = string.Format("Length: {0}", packet.Data.Length);
 
             var ms = new MemoryStream(packet.Data);
             var prov = new Be.Windows.Forms.DynamicFileByteProvider(ms);

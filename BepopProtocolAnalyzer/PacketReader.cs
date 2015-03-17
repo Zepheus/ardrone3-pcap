@@ -23,8 +23,8 @@ namespace BepopProtocolAnalyzer
 
         // Video buffering
         private byte[] videoBuffer = new byte[MaxFragmentNum * MaxFragmentSize];
-        private int videoOffset = 0;
         private ushort currentFrameNum = 0;
+        private int currentFrameSize = 0;
 
         public string Filename { get; private set; }
 
@@ -110,10 +110,10 @@ namespace BepopProtocolAnalyzer
                 if (frameNum != currentFrameNum)
                 {
                     // Try to flush the previous frame
-                    if (videoOffset > 0)
+                    if (currentFrameSize > 0)
                     {
-                        var data = new byte[videoOffset];
-                        Buffer.BlockCopy(videoBuffer, 0, data, 0, videoOffset);
+                        var data = new byte[currentFrameSize];
+                        Buffer.BlockCopy(videoBuffer, 0, data, 0, currentFrameSize);
                         var ev = OnVideoFrameReceived;
                         if (ev != null)
                         {
@@ -125,7 +125,7 @@ namespace BepopProtocolAnalyzer
                         }
                     }
                     currentFrameNum = frameNum;
-                    videoOffset = 0;
+                    currentFrameSize = 0;
                 }
 
                 var flags = f.Data[2];
@@ -134,17 +134,21 @@ namespace BepopProtocolAnalyzer
                 var flushFrame = (flags & 1) == 1;
                 Debug.WriteLine("FrameNum={0}, FragmentNum={1}, # Fragments={2}", frameNum, fragmentsPerFrame, fragNum);
 
-
+                var offset = fragNum*MaxFragmentSize;
                 var dataLen = f.Data.Length - 5;
-                if (videoOffset + dataLen > videoBuffer.Length)
+                if (fragNum == fragmentsPerFrame - 1)
                 {
-                    Debug.WriteLine("Invalid frame, exceeding max size.");
+                    currentFrameSize = (fragmentsPerFrame - 1)*MaxFragmentSize + dataLen;
+                    Debug.WriteLine("Final frame, most likely not full size.");
                 }
                 else
                 {
-                    Buffer.BlockCopy(f.Data, 5, videoBuffer, videoOffset, dataLen);
-                    videoOffset += dataLen;
+                    if (dataLen != MaxFragmentSize)
+                    {
+                         Debug.WriteLine("Received non-full packet in between stream.");
+                    }
                 }
+                Buffer.BlockCopy(f.Data, 5, videoBuffer, offset, dataLen);
             }
             catch (Exception ex)
             {

@@ -16,6 +16,8 @@ namespace BepopProtocolAnalyzer
         private PacketReader reader;
         private List<Frame> frames;
 
+        private FileStream videoFile;
+
         private BepopServer s;
 
         public MainForm()
@@ -39,14 +41,30 @@ namespace BepopProtocolAnalyzer
                     reader = new PacketReader(ofd.FileName);
                     reader.OnFrameReceived += reader_OnFrameReceived;
                     reader.OnStreamFinished += reader_OnStreamFinished;
+                    reader.OnVideoFrameReceived += reader_OnVideoFrameReceived;
                     reader.Open();
                     reader.Start();
                 });
             }
         }
 
+        void reader_OnVideoFrameReceived(object sender, VideoFrameReceived e)
+        {
+            if (videoFile == null)
+            {
+                videoFile = File.Create("video.h264");
+            }
+            videoFile.Write(e.Data, 0, e.Data.Length);
+        }
+
         void reader_OnStreamFinished(object sender, EventArgs e)
         {
+            if (videoFile != null)
+            {
+                videoFile.Flush();
+                videoFile.Close();
+            }
+
             var a = new Action(() => lblStatus.Text = "Finished.");
             if (statusStrip1.InvokeRequired)
                 statusStrip1.Invoke(a);

@@ -33,6 +33,7 @@ namespace BepopProtocolAnalyzer
         public event EventHandler<EventArgs> OnStreamFinished;
 
         private ICaptureDevice device;
+        private DateTime firstPacket = DateTime.MinValue;
         private bool dumpVideo;
 
         public PacketReader(string filename, bool dumpVideo)
@@ -71,6 +72,10 @@ namespace BepopProtocolAnalyzer
         {
             if (e.Packet.LinkLayerType == LinkLayers.Ethernet)
             {
+                if (firstPacket == DateTime.MinValue)
+                {
+                    firstPacket = e.Packet.Timeval.Date;
+                }
                 var packet = PacketDotNet.Packet.ParsePacket(e.Packet.LinkLayerType, e.Packet.Data);
                 var ethernetPacket = (EthernetPacket)packet;
 
@@ -84,6 +89,7 @@ namespace BepopProtocolAnalyzer
                     f = buffer.ReadFrame();
                     if (f != null)
                     {
+                        f.Time = (e.Packet.Timeval.Date - firstPacket).TotalSeconds;
                         if (dumpVideo && f.Id == 125)
                         {
                             // Process video data

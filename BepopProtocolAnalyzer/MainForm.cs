@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,7 +72,8 @@ namespace BepopProtocolAnalyzer
         {
             var a = new Action(() =>
             {
-                var i = new ListViewItem(f.Direction.ToString());
+                var i = new ListViewItem(f.Time.ToString("0.###"));
+                i.SubItems.Add(f.Direction.ToString());
                 i.SubItems.Add(f.Type.ToString());
 
                 if(f.Id == 0)

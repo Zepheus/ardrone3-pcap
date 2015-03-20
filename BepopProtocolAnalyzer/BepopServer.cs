@@ -19,6 +19,7 @@ namespace BepopProtocolAnalyzer
         private bool listening;
 
         private RingBuffer ring;
+        private DateTime firstPacket = DateTime.MinValue;
 
         public event EventHandler<FrameReceivedEventArgs> OnFrameReceived;
 
@@ -50,6 +51,9 @@ namespace BepopProtocolAnalyzer
                iar => udpListener.EndReceiveFrom(iar, ref sender), null);
                 if (result > 0)
                 {
+                    if (firstPacket == DateTime.MinValue)
+                        firstPacket = DateTime.Now;
+
                     var data = new byte[result];
                     Buffer.BlockCopy(buffer, 0, data, 0, result);
                     ring.AddData(data);
@@ -60,6 +64,7 @@ namespace BepopProtocolAnalyzer
                         f = ring.ReadFrame();
                         if (f != null)
                         {
+                            f.Time = (DateTime.Now - firstPacket).TotalSeconds;
                             var ev = OnFrameReceived;
                             if (ev != null)
                             {

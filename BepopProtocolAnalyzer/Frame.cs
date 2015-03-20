@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BepopProtocolAnalyzer
+﻿namespace BepopProtocolAnalyzer
 {
     public class Frame
     {
@@ -14,6 +8,7 @@ namespace BepopProtocolAnalyzer
             ToController
         }
 
+        public double Time { get; set; }
         public FrameDirection Direction { get; private set; }
         public FrameType Type { get; private set; }
         public byte Id { get; private set; }

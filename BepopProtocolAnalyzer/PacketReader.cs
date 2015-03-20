@@ -33,10 +33,12 @@ namespace BepopProtocolAnalyzer
         public event EventHandler<EventArgs> OnStreamFinished;
 
         private ICaptureDevice device;
+        private bool dumpVideo;
 
-        public PacketReader(string filename)
+        public PacketReader(string filename, bool dumpVideo)
         {
             Filename = filename;
+            this.dumpVideo = dumpVideo;
             buffers[0] = new RingBuffer(Frame.FrameDirection.ToDrone);
             buffers[1] = new RingBuffer(Frame.FrameDirection.ToController);
         }
@@ -82,7 +84,7 @@ namespace BepopProtocolAnalyzer
                     f = buffer.ReadFrame();
                     if (f != null)
                     {
-                        if (f.Id == 125)
+                        if (dumpVideo && f.Id == 125)
                         {
                             // Process video data
                             ProcessVideoFrame(f);

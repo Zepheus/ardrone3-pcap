@@ -36,9 +36,10 @@ namespace BepopProtocolAnalyzer
                 lblStatus.Text = "Parsing PCAP...";
                 btnOpenPcap.Enabled = false;
                 chkShowLL.Enabled = false;
+                chkDumpVideo.Enabled = false;
                 Task.Factory.StartNew(() =>
                 {
-                    reader = new PacketReader(ofd.FileName);
+                    reader = new PacketReader(ofd.FileName, chkDumpVideo.Checked);
                     reader.OnFrameReceived += reader_OnFrameReceived;
                     reader.OnStreamFinished += reader_OnStreamFinished;
                     reader.OnVideoFrameReceived += reader_OnVideoFrameReceived;

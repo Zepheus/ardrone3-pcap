@@ -301,4 +301,16 @@ namespace BepopProtocolAnalyzer
         WIFISIGNALCHANGED,
         SENSORSSTATESLISTCHANGED,
     }
+
+    public enum CommonSettingsStateCommand : ushort
+    {
+        ALLSETTINGSCHANGED = 0,
+        RESETCHANGED,
+        PRODUCTNAMECHANGED,
+        PRODUCTVERSIONCHANGED,
+        PRODUCTSERIALHIGHCHANGED,
+        PRODUCTSERIALLOWCHANGED,
+        COUNTRYCHANGED,
+        AUTOCOUNTRYCHANGED,
+    }
 }

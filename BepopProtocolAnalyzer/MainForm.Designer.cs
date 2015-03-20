@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnOpenPcap = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.hxBox = new Be.Windows.Forms.HexBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.chkShowLL = new System.Windows.Forms.CheckBox();
-            this.btnStartSimulator = new System.Windows.Forms.Button();
             this.lstPackets = new BepopProtocolAnalyzer.ListViewNF();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,6 +39,14 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnOpenPcap = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.hxBox = new Be.Windows.Forms.HexBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.chkShowLL = new System.Windows.Forms.CheckBox();
+            this.btnStartSimulator = new System.Windows.Forms.Button();
+            this.chkDumpVideo = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -60,6 +61,65 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packet List:";
+            // 
+            // lstPackets
+            // 
+            this.lstPackets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.lstPackets.Location = new System.Drawing.Point(6, 19);
+            this.lstPackets.Name = "lstPackets";
+            this.lstPackets.Size = new System.Drawing.Size(823, 305);
+            this.lstPackets.TabIndex = 0;
+            this.lstPackets.UseCompatibleStateImageBehavior = false;
+            this.lstPackets.View = System.Windows.Forms.View.Details;
+            this.lstPackets.SelectedIndexChanged += new System.EventHandler(this.lstPackets_SelectedIndexChanged);
+            this.lstPackets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstPackets_MouseDoubleClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Direction";
+            this.columnHeader1.Width = 96;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Type";
+            this.columnHeader2.Width = 96;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Id";
+            this.columnHeader3.Width = 54;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Seq";
+            this.columnHeader4.Width = 56;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Len";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Proj";
+            this.columnHeader6.Width = 111;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Class";
+            this.columnHeader7.Width = 147;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Cmd";
+            this.columnHeader8.Width = 170;
             // 
             // btnOpenPcap
             // 
@@ -127,70 +187,22 @@
             this.btnStartSimulator.UseVisualStyleBackColor = true;
             this.btnStartSimulator.Click += new System.EventHandler(this.btnStartSimulator_Click);
             // 
-            // lstPackets
+            // chkDumpVideo
             // 
-            this.lstPackets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.lstPackets.Location = new System.Drawing.Point(6, 19);
-            this.lstPackets.Name = "lstPackets";
-            this.lstPackets.Size = new System.Drawing.Size(823, 305);
-            this.lstPackets.TabIndex = 0;
-            this.lstPackets.UseCompatibleStateImageBehavior = false;
-            this.lstPackets.View = System.Windows.Forms.View.Details;
-            this.lstPackets.SelectedIndexChanged += new System.EventHandler(this.lstPackets_SelectedIndexChanged);
-            this.lstPackets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstPackets_MouseDoubleClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Direction";
-            this.columnHeader1.Width = 96;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Type";
-            this.columnHeader2.Width = 96;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Id";
-            this.columnHeader3.Width = 54;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Seq";
-            this.columnHeader4.Width = 56;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Len";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Proj";
-            this.columnHeader6.Width = 111;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Class";
-            this.columnHeader7.Width = 147;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Cmd";
-            this.columnHeader8.Width = 170;
+            this.chkDumpVideo.AutoSize = true;
+            this.chkDumpVideo.Location = new System.Drawing.Point(243, 20);
+            this.chkDumpVideo.Name = "chkDumpVideo";
+            this.chkDumpVideo.Size = new System.Drawing.Size(84, 17);
+            this.chkDumpVideo.TabIndex = 6;
+            this.chkDumpVideo.Text = "Dump Video";
+            this.chkDumpVideo.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 611);
+            this.Controls.Add(this.chkDumpVideo);
             this.Controls.Add(this.btnStartSimulator);
             this.Controls.Add(this.chkShowLL);
             this.Controls.Add(this.statusStrip1);
@@ -229,6 +241,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.CheckBox chkShowLL;
         private System.Windows.Forms.Button btnStartSimulator;
+        private System.Windows.Forms.CheckBox chkDumpVideo;
     }
 }
 

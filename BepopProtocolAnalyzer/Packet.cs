@@ -112,6 +112,8 @@ namespace BepopProtocolAnalyzer
                     {
                         case CommonPacketClass.COMMONSTATE:
                             return ((CommonCommonStateCommand) cmd).ToString();
+                        case CommonPacketClass.SETTINGSSTATE:
+                            return ((CommonSettingsStateCommand) cmd).ToString();
                         default:
                             return cmd.ToString();
                     }

@@ -313,4 +313,39 @@ namespace BepopProtocolAnalyzer
         COUNTRYCHANGED,
         AUTOCOUNTRYCHANGED,
     }
+
+    public enum CommonCommonCommand : ushort
+    {
+        ALLSTATES = 0,
+        CURRENTDATE,
+        CURRENTTIME,
+        REBOOT,
+    }
+
+    public enum CommonCalibrationCommand : ushort
+    {
+        MAGNETOCALIBRATION = 0,
+    }
+
+    public enum CommonCalibrationStateCommand : ushort
+    {
+        ARCOMMANDS_ID_COMMON_CALIBRATIONSTATE_CMD_MAGNETOCALIBRATIONSTATECHANGED = 0,
+        ARCOMMANDS_ID_COMMON_CALIBRATIONSTATE_CMD_MAGNETOCALIBRATIONREQUIREDSTATE,
+        ARCOMMANDS_ID_COMMON_CALIBRATIONSTATE_CMD_MAGNETOCALIBRATIONAXISTOCALIBRATECHANGED,
+        ARCOMMANDS_ID_COMMON_CALIBRATIONSTATE_CMD_MAGNETOCALIBRATIONSTARTEDCHANGED,
+    }
+
+    public enum CommonSettingsCommand : ushort
+    {
+        ALLSETTINGS = 0,
+        RESET,
+        PRODUCTNAME,
+        COUNTRY,
+        AUTOCOUNTRY,
+    }
+
+    public enum CommonCameraSettingState : ushort
+    {
+        CAMERASETTINGSCHANGED = 0,
+    }
 }

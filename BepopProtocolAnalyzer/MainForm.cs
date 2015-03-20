@@ -18,7 +18,6 @@ namespace BepopProtocolAnalyzer
         public MainForm()
         {
             InitializeComponent();
-
             frames = new List<Frame>();
         }
 

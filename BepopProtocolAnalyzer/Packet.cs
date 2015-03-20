@@ -108,12 +108,22 @@ namespace BepopProtocolAnalyzer
                             return cmd.ToString();
                     }
                 case PacketType.COMMON:
-                    switch ((CommonPacketClass) cl)
+                    switch ((CommonPacketClass)cl)
                     {
                         case CommonPacketClass.COMMONSTATE:
-                            return ((CommonCommonStateCommand) cmd).ToString();
+                            return ((CommonCommonStateCommand)cmd).ToString();
                         case CommonPacketClass.SETTINGSSTATE:
-                            return ((CommonSettingsStateCommand) cmd).ToString();
+                            return ((CommonSettingsStateCommand)cmd).ToString();
+                        case CommonPacketClass.COMMON:
+                            return ((CommonCommonCommand)cmd).ToString();
+                        case CommonPacketClass.CALIBRATIONSTATE:
+                            return ((CommonCalibrationStateCommand)cmd).ToString();
+                        case CommonPacketClass.SETTINGS:
+                            return ((CommonSettingsCommand)cmd).ToString();
+                        case CommonPacketClass.CALIBRATION:
+                            return ((CommonCalibrationCommand)cmd).ToString();
+                        case CommonPacketClass.CAMERASETTINGSSTATE:
+                            return ((CommonCameraSettingState)cmd).ToString();
                         default:
                             return cmd.ToString();
                     }

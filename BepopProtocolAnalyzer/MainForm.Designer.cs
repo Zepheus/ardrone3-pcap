@@ -38,8 +38,6 @@
             this.chkShowLL = new System.Windows.Forms.CheckBox();
             this.btnOpenPcap = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.hxBox = new Be.Windows.Forms.HexBox();
             this.lstPackets = new BepopProtocolAnalyzer.ListViewNF();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +48,8 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.hxBox = new Be.Windows.Forms.HexBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -170,28 +170,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Packet List:";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.hxBox);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(990, 183);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Data:";
-            // 
-            // hxBox
-            // 
-            this.hxBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hxBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.hxBox.Location = new System.Drawing.Point(3, 16);
-            this.hxBox.Name = "hxBox";
-            this.hxBox.ReadOnly = true;
-            this.hxBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hxBox.Size = new System.Drawing.Size(984, 164);
-            this.hxBox.TabIndex = 0;
-            // 
             // lstPackets
             // 
             this.lstPackets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -205,6 +183,7 @@
             this.columnHeader7,
             this.columnHeader8});
             this.lstPackets.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstPackets.FullRowSelect = true;
             this.lstPackets.Location = new System.Drawing.Point(3, 16);
             this.lstPackets.Name = "lstPackets";
             this.lstPackets.Size = new System.Drawing.Size(984, 329);
@@ -246,19 +225,40 @@
             // columnHeader6
             // 
             this.columnHeader6.Text = "Proj";
-            this.columnHeader6.Width = 111;
+            this.columnHeader6.Width = 139;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.DisplayIndex = 8;
             this.columnHeader7.Text = "Class";
-            this.columnHeader7.Width = 195;
+            this.columnHeader7.Width = 165;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.DisplayIndex = 7;
             this.columnHeader8.Text = "Cmd";
-            this.columnHeader8.Width = 170;
+            this.columnHeader8.Width = 204;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.hxBox);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(990, 183);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Data:";
+            // 
+            // hxBox
+            // 
+            this.hxBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hxBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.hxBox.Location = new System.Drawing.Point(3, 16);
+            this.hxBox.Name = "hxBox";
+            this.hxBox.ReadOnly = true;
+            this.hxBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hxBox.Size = new System.Drawing.Size(984, 164);
+            this.hxBox.StringViewVisible = true;
+            this.hxBox.TabIndex = 0;
             // 
             // MainForm
             // 

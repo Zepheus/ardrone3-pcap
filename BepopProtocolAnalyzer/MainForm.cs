@@ -24,7 +24,7 @@ namespace BepopProtocolAnalyzer
         private void btnOpenPcap_Click(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog();
-            ofd.Filter = "PCAP File (*.pcap)|*.pcap";
+            ofd.Filter = "PCAP File (*.pcap)|*.pcap|CAP file (*.cap)|*.cap";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 lblStatus.Text = "Parsing PCAP...";

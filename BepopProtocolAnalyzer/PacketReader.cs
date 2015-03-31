@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json.Linq;
 using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
@@ -13,8 +14,10 @@ namespace BepopProtocolAnalyzer
 {
     public class PacketReader
     {
-        private const ushort SendPort = 43210;
-        private const ushort RecvPort = 54321;
+        private ushort sendPort;
+        private ushort recvPort;
+        private IPAddress droneIp;
+        private IPAddress controlIp;
 
         private const ushort MaxFragmentSize = 1000; //max video fragment size from json
         private const ushort MaxFragmentNum = 128; //max video fragment num from json
@@ -39,6 +42,7 @@ namespace BepopProtocolAnalyzer
         public PacketReader(string filename, bool dumpVideo)
         {
             Filename = filename;
+            this.droneIp = droneIp;
             this.dumpVideo = dumpVideo;
             buffers[0] = new RingBuffer(Frame.FrameDirection.ToDrone);
             buffers[1] = new RingBuffer(Frame.FrameDirection.ToController);
@@ -50,8 +54,7 @@ namespace BepopProtocolAnalyzer
             {   
                 device = new CaptureFileReaderDevice(Filename);
                 device.Open();
-                device.Filter = string.Format("udp dst port {0} or udp dst port {1}", SendPort, RecvPort);
-                device.OnPacketArrival += device_OnPacketArrival;
+                device.Filter = string.Format("tcp dst port {0} or tcp src port {0}", 44444);
             }
         }
 
@@ -59,6 +62,43 @@ namespace BepopProtocolAnalyzer
         {
             if(device == null)
                 Open();
+
+            RawCapture p;
+            while ((p = device.GetNextPacket()) != null)
+            {
+                var packet = PacketDotNet.Packet.ParsePacket(LinkLayers.Ethernet, p.Data);
+                var ethernetPacket = (EthernetPacket)packet;
+
+                var tcpPacket = (TcpPacket)ethernetPacket.PayloadPacket.PayloadPacket;
+                var ipv4 = (IPv4Packet) ethernetPacket.PayloadPacket;
+                if (tcpPacket.PayloadData.Length > 0)
+                {
+                    var json = Encoding.ASCII.GetString(tcpPacket.PayloadData).TrimEnd();
+                    var obj = JObject.Parse(json);
+                    if (obj["d2c_port"] != null)
+                    {
+                        recvPort = (ushort) obj["d2c_port"];
+                        controlIp = ipv4.SourceAddress;
+                        Debug.WriteLine("Control at {0}:{1}", ipv4.SourceAddress, recvPort);
+                    }
+                    else if (obj["c2d_port"] != null)
+                    {
+                        sendPort = (ushort)obj["c2d_port"];
+                        droneIp = ipv4.SourceAddress;
+                        Debug.WriteLine("Drone at {0}:{1}", ipv4.SourceAddress, sendPort);
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Invalid TCP packet on port 44444");
+                    }
+                }
+                if (recvPort != 0 && sendPort != 0)
+                    break; //We found
+            }
+
+            // Found location
+            device.Filter = string.Format("udp dst port {0} or udp dst port {1}", sendPort, recvPort);
+            device.OnPacketArrival += device_OnPacketArrival;
 
             device.Capture();
             device.Close();
@@ -78,10 +118,13 @@ namespace BepopProtocolAnalyzer
                 }
                 var packet = PacketDotNet.Packet.ParsePacket(e.Packet.LinkLayerType, e.Packet.Data);
                 var ethernetPacket = (EthernetPacket)packet;
-
+                var ipv4 = (IPv4Packet) packet.PayloadPacket;
                 var udpPacket = (UdpPacket)ethernetPacket.PayloadPacket.PayloadPacket;
 
-                var buffer = buffers[udpPacket.DestinationPort == RecvPort ? 0 : 1];
+                var num = ethernetPacket.DestinationHwAddress;
+
+                //0 = toDrone, 1 = toControl
+                var buffer = buffers[ipv4.SourceAddress.Equals(controlIp) ? 0 : 1];
                 buffer.AddData(udpPacket.PayloadData);
                 Frame f = null;
                 do

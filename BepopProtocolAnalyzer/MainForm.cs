@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,12 +76,33 @@ namespace BepopProtocolAnalyzer
                 i.SubItems.Add(f.Direction.ToString());
                 i.SubItems.Add(f.Type.ToString());
 
-                if(f.Id == 0)
+                if (f.Type == FrameType.ACK)
+                {
+                    i.ForeColor = Color.Purple;
+                }
+                else if (f.Direction == Frame.FrameDirection.ToDrone)
+                {
+                    i.ForeColor = Color.Blue;
+                }
+                else if (f.Direction == Frame.FrameDirection.ToController)
+                {
+                    i.ForeColor = Color.Black;
+                }
+
+                if (f.Id == 0)
+                {
                     i.SubItems.Add("PING");
+                    i.ForeColor = Color.Orange;
+                }
                 else if (f.Id == 1)
+                {
                     i.SubItems.Add("PONG");
+                    i.ForeColor = Color.DarkGreen;
+                }
                 else
+                {
                     i.SubItems.Add(f.Id.ToString());
+                }
 
                 i.SubItems.Add(f.Seq.ToString());
                 i.SubItems.Add(f.Data.Length.ToString());
@@ -103,6 +125,7 @@ namespace BepopProtocolAnalyzer
                 i.Tag = f;
                 lstPackets.Items.Add(i);
             });
+
             if (lstPackets.InvokeRequired)
                 lstPackets.Invoke(a);
             else

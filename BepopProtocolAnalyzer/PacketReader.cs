@@ -42,7 +42,6 @@ namespace BepopProtocolAnalyzer
         public PacketReader(string filename, bool dumpVideo)
         {
             Filename = filename;
-            this.droneIp = droneIp;
             this.dumpVideo = dumpVideo;
             buffers[0] = new RingBuffer(Frame.FrameDirection.ToDrone);
             buffers[1] = new RingBuffer(Frame.FrameDirection.ToController);

@@ -96,13 +96,13 @@ namespace BepopProtocolAnalyzer
                 case PacketType.ARDRONE3DEBUG:
                     switch ((Ardrone3DebugClass)cl)
                     {
-                        case Ardrone3DebugClass.DEBUG_CLASS_BATTERYDEBUGSETTINGS:
+                        case Ardrone3DebugClass.DEBUG_BATTERYDEBUGSETTINGS:
                             return ((ArDrone3DebugBatterySettingsCommand)cmd).ToString();
-                        case Ardrone3DebugClass.DEBUG_CLASS_BATTERYDEBUGSETTINGSSTATE:
+                        case Ardrone3DebugClass.DEBUG_BATTERYDEBUGSETTINGSSTATE:
                             return ((ArDrone3DebugBatterySettingsStateCommand)cmd).ToString();
-                        case Ardrone3DebugClass.DEBUG_CLASS_GPSDEBUGSTATE:
+                        case Ardrone3DebugClass.DEBUG_GPSDEBUGSTATE:
                             return ((ArDrone3DebugGpsStateCommand)cmd).ToString();
-                        case Ardrone3DebugClass.DEBUG_CLASS_VIDEO:
+                        case Ardrone3DebugClass.DEBUG_VIDEO:
                             return ((ArDrone3DebugVideoCommand)cmd).ToString();
                         default:
                             return cmd.ToString();

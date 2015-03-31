@@ -62,10 +62,10 @@ namespace BepopProtocolAnalyzer
 
     public enum Ardrone3DebugClass : byte
     {
-        DEBUG_CLASS_VIDEO = 0,
-        DEBUG_CLASS_BATTERYDEBUGSETTINGS = 1,
-        DEBUG_CLASS_BATTERYDEBUGSETTINGSSTATE = 2,
-        DEBUG_CLASS_GPSDEBUGSTATE = 3,
+        DEBUG_VIDEO = 0,
+        DEBUG_BATTERYDEBUGSETTINGS = 1,
+        DEBUG_BATTERYDEBUGSETTINGSSTATE = 2,
+        DEBUG_GPSDEBUGSTATE = 3,
     }
 
     public enum CommonPacketClass : byte
@@ -110,7 +110,7 @@ namespace BepopProtocolAnalyzer
 
     public enum ArDrone3CameraCommand : ushort
     {
-        ARCOMMANDS_ID_ARDRONE3_CAMERA_CMD_ORIENTATION = 0,
+        ORIENTATION = 0,
     }
 
     public enum ArDrone3MediaRecordCommand : ushort

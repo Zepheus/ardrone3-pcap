@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PacketInspectorForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblLen = new System.Windows.Forms.Label();
             this.lblCommand = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
             this.lblProject = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.hxData = new Be.Windows.Forms.HexBox();
-            this.lblLen = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +52,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Metadata:";
+            // 
+            // lblLen
+            // 
+            this.lblLen.AutoSize = true;
+            this.lblLen.Location = new System.Drawing.Point(327, 30);
+            this.lblLen.Name = "lblLen";
+            this.lblLen.Size = new System.Drawing.Size(43, 13);
+            this.lblLen.TabIndex = 3;
+            this.lblLen.Text = "Length:";
             // 
             // lblCommand
             // 
@@ -98,16 +107,8 @@
             this.hxData.ReadOnly = true;
             this.hxData.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
             this.hxData.Size = new System.Drawing.Size(607, 340);
+            this.hxData.StringViewVisible = true;
             this.hxData.TabIndex = 0;
-            // 
-            // lblLen
-            // 
-            this.lblLen.AutoSize = true;
-            this.lblLen.Location = new System.Drawing.Point(327, 30);
-            this.lblLen.Name = "lblLen";
-            this.lblLen.Size = new System.Drawing.Size(43, 13);
-            this.lblLen.TabIndex = 3;
-            this.lblLen.Text = "Length:";
             // 
             // PacketInspectorForm
             // 

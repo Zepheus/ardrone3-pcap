@@ -53,7 +53,7 @@ namespace BepopProtocolAnalyzer
             videoFile.Write(e.Data, 0, e.Data.Length);
         }
 
-        void reader_OnStreamFinished(object sender, EventArgs e)
+        void reader_OnStreamFinished(object sender, StreamFinishedEventArgs e)
         {
             if (videoFile != null)
             {
@@ -61,7 +61,7 @@ namespace BepopProtocolAnalyzer
                 videoFile.Close();
             }
 
-            var a = new Action(() => lblStatus.Text = "Finished.");
+            var a = new Action(() => lblStatus.Text = e.FoundDiscovery ? "Finished." : "No protocol discovery found. Some parts of capture are missing.");
             if (statusStrip1.InvokeRequired)
                 statusStrip1.Invoke(a);
             else

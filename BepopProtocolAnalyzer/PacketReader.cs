@@ -33,7 +33,7 @@ namespace BepopProtocolAnalyzer
 
         public event EventHandler<FrameReceivedEventArgs> OnFrameReceived;
         public event EventHandler<VideoFrameReceived> OnVideoFrameReceived;
-        public event EventHandler<EventArgs> OnStreamFinished;
+        public event EventHandler<StreamFinishedEventArgs> OnStreamFinished;
 
         private ICaptureDevice device;
         private DateTime firstPacket = DateTime.MinValue;
@@ -104,7 +104,7 @@ namespace BepopProtocolAnalyzer
 
             var e = OnStreamFinished;
             if (e != null)
-                OnStreamFinished(this, EventArgs.Empty);
+                OnStreamFinished(this, new StreamFinishedEventArgs(p != null));
         }
 
         void device_OnPacketArrival(object sender, CaptureEventArgs e)

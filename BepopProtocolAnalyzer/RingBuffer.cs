@@ -10,6 +10,11 @@ namespace BepopProtocolAnalyzer
     {
         private const int BufferSize = 64 * 1024;
 
+        public int BytesRemaining
+        {
+            get { return blen - bstart; }
+        }
+
         private byte[] buffer = new byte[BufferSize];
         private int bstart = 0;
         private int blen = 0;
@@ -28,6 +33,8 @@ namespace BepopProtocolAnalyzer
             Buffer.BlockCopy(data, 0, buffer, bstart, len);
             blen += len;
         }
+
+       
 
         public Frame ReadFrame()
         {

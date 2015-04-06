@@ -126,11 +126,13 @@ namespace BepopProtocolAnalyzer
                 var buffer = buffers[ipv4.SourceAddress.Equals(controlIp) ? 0 : 1];
                 buffer.AddData(udpPacket.PayloadData);
                 Frame f = null;
+                var numPackets = 0;
                 do
                 {
                     f = buffer.ReadFrame();
                     if (f != null)
                     {
+                        numPackets++;
                         f.Time = (e.Packet.Timeval.Date - firstPacket).TotalSeconds;
                         if (dumpVideo && f.Id == 125)
                         {
@@ -145,6 +147,10 @@ namespace BepopProtocolAnalyzer
                         }
                     }
                 } while (f != null);
+                if (numPackets != 1 && buffer.BytesRemaining != 0)
+                {
+                    Debug.WriteLine("Multiple/no packet detected.");
+                }
             }
 
         }

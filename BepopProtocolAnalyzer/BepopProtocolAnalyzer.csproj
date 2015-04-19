@@ -100,6 +100,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdapterSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdapterSelectionForm.Designer.cs">
+      <DependentUpon>AdapterSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BepopServer.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Frame.cs" />
@@ -126,6 +132,9 @@
     <Compile Include="RingBuffer.cs" />
     <Compile Include="StreamFinishedEventArgs.cs" />
     <Compile Include="VideoFrameReceived.cs" />
+    <EmbeddedResource Include="AdapterSelectionForm.resx">
+      <DependentUpon>AdapterSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

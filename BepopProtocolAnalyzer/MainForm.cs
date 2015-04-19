@@ -9,59 +9,41 @@ namespace BepopProtocolAnalyzer
 {
     public partial class MainForm : Form
     {
-        private PacketReader reader;
-        private List<Frame> frames;
+        private PacketReader _reader;
+        private FileStream _videoFile;
 
-        private FileStream videoFile;
-
-        private BepopServer s;
+        private BepopServer _s;
 
         public MainForm()
         {
             InitializeComponent();
-            frames = new List<Frame>();
-        }
-
-        private void btnOpenPcap_Click(object sender, EventArgs e)
-        {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "PCAP File (*.pcap)|*.pcap|CAP file (*.cap)|*.cap";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblStatus.Text = "Parsing PCAP...";
-                btnOpenPcap.Enabled = false;
-                chkShowLL.Enabled = false;
-                chkDumpVideo.Enabled = false;
-                Task.Factory.StartNew(() =>
-                {
-                    reader = new PacketReader(ofd.FileName, chkDumpVideo.Checked);
-                    reader.OnFrameReceived += reader_OnFrameReceived;
-                    reader.OnStreamFinished += reader_OnStreamFinished;
-                    reader.OnVideoFrameReceived += reader_OnVideoFrameReceived;
-                    reader.Open();
-                    reader.Start();
-                });
-            }
         }
 
         void reader_OnVideoFrameReceived(object sender, VideoFrameReceived e)
         {
-            if (videoFile == null)
+            if (_videoFile == null)
             {
-                videoFile = File.Create("video.h264");
+                _videoFile = File.Create("video.h264");
             }
-            videoFile.Write(e.Data, 0, e.Data.Length);
+            _videoFile.Write(e.Data, 0, e.Data.Length);
         }
 
         void reader_OnStreamFinished(object sender, StreamFinishedEventArgs e)
         {
-            if (videoFile != null)
+            if (_videoFile != null)
             {
-                videoFile.Flush();
-                videoFile.Close();
+                _videoFile.Flush();
+                _videoFile.Close();
             }
 
-            var a = new Action(() => lblStatus.Text = e.FoundDiscovery ? "Finished." : "No protocol discovery found. Some parts of capture are missing.");
+            var a = new Action(() =>
+            {
+                lblStatus.Text = e.FoundDiscovery
+                    ? "Finished."
+                    : "No protocol discovery found. Some parts of capture are missing.";
+                SetControls(true);
+            });
+
             if (statusStrip1.InvokeRequired)
                 statusStrip1.Invoke(a);
             else
@@ -134,8 +116,7 @@ namespace BepopProtocolAnalyzer
 
         void reader_OnFrameReceived(object sender, FrameReceivedEventArgs e)
         {
-            frames.Add(e.Frame);
-            if (e.Frame.Type != FrameType.DATA_LL || (chkShowLL.Checked))
+            if (e.Frame.Type != FrameType.DATA_LL)
             {
                 AddFrameToList(e.Frame);
             }
@@ -177,14 +158,87 @@ namespace BepopProtocolAnalyzer
             }
         }
 
-        private void btnStartSimulator_Click(object sender, EventArgs e)
+        private void SetControls(bool enabled)
         {
-            if (s == null)
+            simulateDroneToolStripMenuItem.Enabled = enabled;
+            openToolStripMenuItem.Enabled = enabled;
+            dumpVideoToolStripMenuItem.Enabled = enabled;
+            stopToolStripMenuItem.Enabled = !enabled;
+        }
+
+        private void StartCapture(Func<PacketReader> reader)
+        {
+            // Close previous reader if necessary
+            if (_reader != null)
             {
-                s = new BepopServer(44444);
-                s.OnFrameReceived += reader_OnFrameReceived;
-                s.Start();
-                btnStartSimulator.Enabled = false;
+                _reader.Stop();
+                _reader.Close();
+            }
+
+            lstPackets.Items.Clear();
+            Task.Factory.StartNew(() =>
+            {
+                _reader = reader();
+                _reader.OnFrameReceived += reader_OnFrameReceived;
+                _reader.OnStreamFinished += reader_OnStreamFinished;
+                _reader.OnVideoFrameReceived += reader_OnVideoFrameReceived;
+                _reader.Open();
+                _reader.Start();
+            });
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "PCAP File (*.pcap)|*.pcap|CAP file (*.cap)|*.cap";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                SetControls(false);
+
+                StartCapture(() => new PacketReader(ofd.FileName, dumpVideoToolStripMenuItem.Checked));
+                lblStatus.Text = "Parsing PCAP...";
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void simulateDroneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_s == null)
+            {
+                SetControls(false);
+
+                _s = new BepopServer(44444);
+                lblStatus.Text = "Started ArDrone3 discovery on port 44444";
+                _s.OnFrameReceived += reader_OnFrameReceived;
+                _s.Start();
+            }
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var selector = new AdapterSelectionForm();
+            if (selector.ShowDialog() == DialogResult.OK)
+            {
+                var device = selector.Device;
+                SetControls(false);
+                stopToolStripMenuItem.Enabled = true;
+                StartCapture(() =>  new PacketReader(device, dumpVideoToolStripMenuItem.Checked));
+                lblStatus.Text = "Started capture on " + device.Interface.FriendlyName;
+            }
+        }
+
+        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_reader != null)
+            {
+                _reader.Stop();
+                _reader.Close();
+                SetControls(true);
+                lblStatus.Text = "Stopped capture.";
             }
         }
     }

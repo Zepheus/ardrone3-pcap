@@ -21,24 +21,26 @@ For Windows, Visual Studio and NuGet is required. Make sure you build as ``x86``
 - Data (size)
 
 ## Frame processing ##
-Each frame has an id. Packet ID < 2 is reserved for internal traffic.:
+Each frame has an id. Packet ID < 2 is reserved for internal traffic:
 
 - ID = 0, Used for internal PING
 - ID = 1, Used for internal PONG
 
+For more information about ping/pong, see [Ping & Pong](#ping--pong)
+
 A frame type is used to determine which type of data is sent.
 We can distinguish following types:
 
-- Type 1, ARNETWORKAL\_FRAME\_TYPE\_ACK: An ack packet should be replied using the sequence num data. This is the first byte of the frame's data content. 
+- Type 1, ARNETWORKAL\_FRAME\_TYPE\_ACK: An ack packet should be replied using the sequence num data. This is the first byte of the frame's data content. See [ACK Frames](#ack-frames)
 
 - Type 2, ARNETWORKAL\_FRAME\_TYPE\_DATA:
-Depending on the frame's sequence number, the packet is accepted and processed. It is then passed to the packet processor. See **#packet processing**.
+Depending on the frame's sequence number, the packet is accepted and processed. It is then passed to the packet processor. See [Packet Processing](#packet-processing).
 
 - Type 3, ARNETWORKAL\_FRAME\_TYPE\_DATA\_LOW_LATENCY:
-Video data, see **#video-processing**
+Video data, see [Video Packets](#video-packets)
 
 - Type 4, ARNETWORKAL\_FRAME\_TYPE\_DATA\_WITH\_ACK:
-Process as above, but send ACK even when seq is not accepted!
+Process as above, but send ACK even when seq is not accepted! See [ACK Frames](#ack-frames)
 
 Seq is seperately managed for each ID.
 

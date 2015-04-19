@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BepopProtocolAnalyzer.Properties
+namespace ArDrone3Pcap.Properties
 {
 
 

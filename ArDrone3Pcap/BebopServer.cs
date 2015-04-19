@@ -6,9 +6,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BepopProtocolAnalyzer
+namespace ArDrone3Pcap
 {
-    public class BepopServer
+    public class BebopServer
     {
         private const string DiscoveryResponse =
             "{ \"status\": 0, \"c2d_port\": 54321, \"arstream_fragment_size\": 1000," +
@@ -23,7 +23,7 @@ namespace BepopProtocolAnalyzer
 
         public event EventHandler<FrameReceivedEventArgs> OnFrameReceived;
 
-        public BepopServer(ushort discoveryPort)
+        public BebopServer(ushort discoveryPort)
         {
             l = new TcpListener(new IPEndPoint(IPAddress.Any, discoveryPort));
             ring = new RingBuffer(Frame.FrameDirection.ToDrone); 

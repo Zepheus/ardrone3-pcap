@@ -106,7 +106,7 @@
     <Compile Include="AdapterSelectionForm.Designer.cs">
       <DependentUpon>AdapterSelectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BepopServer.cs" />
+    <Compile Include="BebopServer.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Frame.cs" />
     <Compile Include="ListViewNF.cs">

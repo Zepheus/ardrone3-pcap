@@ -10,7 +10,7 @@ using SharpPcap;
 using SharpPcap.LibPcap;
 using PacketDotNet;
 
-namespace BepopProtocolAnalyzer
+namespace ArDrone3Pcap
 {
     public class PacketReader : IDisposable
     {

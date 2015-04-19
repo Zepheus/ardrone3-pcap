@@ -1,4 +1,4 @@
-﻿namespace BepopProtocolAnalyzer
+﻿namespace ArDrone3Pcap
 {
     partial class MainForm
     {
@@ -46,7 +46,7 @@
             this.dumpVideoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.discoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulateDroneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lstPackets = new BepopProtocolAnalyzer.ListViewNF();
+            this.lstPackets = new ArDrone3Pcap.ListViewNF();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));

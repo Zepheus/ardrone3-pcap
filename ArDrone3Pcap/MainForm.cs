@@ -5,14 +5,14 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BepopProtocolAnalyzer
+namespace ArDrone3Pcap
 {
     public partial class MainForm : Form
     {
         private PacketReader _reader;
         private FileStream _videoFile;
 
-        private BepopServer _s;
+        private BebopServer _s;
 
         public MainForm()
         {
@@ -212,7 +212,7 @@ namespace BepopProtocolAnalyzer
             {
                 SetControls(false);
 
-                _s = new BepopServer(44444);
+                _s = new BebopServer(44444);
                 lblStatus.Text = "Started ArDrone3 discovery on port 44444";
                 _s.OnFrameReceived += reader_OnFrameReceived;
                 _s.Start();

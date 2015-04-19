@@ -60,7 +60,7 @@ namespace BepopProtocolAnalyzer
             if (_isFile)
                 _device.Open();
             else
-                _device.Open(DeviceMode.Normal, 0);
+                _device.Open(DeviceMode.Promiscuous, 1);
         }
 
         public void Start()
@@ -85,14 +85,19 @@ namespace BepopProtocolAnalyzer
 
         private void ParseDataFrame(RawCapture raw)
         {
+           
+            var packet = PacketDotNet.Packet.ParsePacket(raw.LinkLayerType, raw.Data);
+            var ethernetPacket = (EthernetPacket)packet;
+            var ipv4 = (IPv4Packet)packet.PayloadPacket;
+
+            var udpPacket = ethernetPacket.PayloadPacket.PayloadPacket as UdpPacket;
+            if (udpPacket == null)
+                return;
+
             if (_firstPacket == DateTime.MinValue)
             {
                 _firstPacket = raw.Timeval.Date;
             }
-            var packet = PacketDotNet.Packet.ParsePacket(raw.LinkLayerType, raw.Data);
-            var ethernetPacket = (EthernetPacket)packet;
-            var ipv4 = (IPv4Packet)packet.PayloadPacket;
-            var udpPacket = (UdpPacket)ethernetPacket.PayloadPacket.PayloadPacket;
 
             var num = ethernetPacket.DestinationHwAddress;
 
@@ -133,7 +138,9 @@ namespace BepopProtocolAnalyzer
             var ethernetPacket = (EthernetPacket)packet;
             var ipv4 = (IPv4Packet)ethernetPacket.PayloadPacket;
 
-            var tcpPacket = (TcpPacket)ethernetPacket.PayloadPacket.PayloadPacket;
+            var tcpPacket = ethernetPacket.PayloadPacket.PayloadPacket as TcpPacket;
+            if (tcpPacket == null)
+                return;
 
             if (tcpPacket.PayloadData.Length > 0)
             {
@@ -159,7 +166,6 @@ namespace BepopProtocolAnalyzer
 
             if (_recvPort != 0 && _sendPort != 0)
             {
-                // We found discovery
                 _device.Filter = string.Format("udp dst port {0} or udp dst port {1}", _sendPort, _recvPort);
                 _hadDiscovery = true;
             }
@@ -182,7 +188,14 @@ namespace BepopProtocolAnalyzer
 
         public void Stop()
         {
-            _device.StopCapture();
+            try
+            {
+                _device.StopCapture();
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         public void Close()

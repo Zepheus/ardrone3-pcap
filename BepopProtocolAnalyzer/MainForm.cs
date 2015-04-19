@@ -162,6 +162,7 @@ namespace BepopProtocolAnalyzer
         {
             simulateDroneToolStripMenuItem.Enabled = enabled;
             openToolStripMenuItem.Enabled = enabled;
+            startToolStripMenuItem.Enabled = enabled;
             dumpVideoToolStripMenuItem.Enabled = enabled;
             stopToolStripMenuItem.Enabled = !enabled;
         }

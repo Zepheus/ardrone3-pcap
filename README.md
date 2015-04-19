@@ -7,6 +7,9 @@ This library depends on winpcap/libpcap (Linux) which can be obtained here: [Win
 
 For Windows, Visual Studio and NuGet is required. Make sure you build as ``x86`` and not for ``All CPU``.
 
+**For sniffing, it is still adviced to use WireShark/tcpdump and open the .pcap (no .pcapng) files using File -> Open.**
+There is a built-in capture mode, but is still unstable due to delay on libpcap kernel filtering.
+
 
 # ARDRONE 3.0 Protocol Specification #
 
